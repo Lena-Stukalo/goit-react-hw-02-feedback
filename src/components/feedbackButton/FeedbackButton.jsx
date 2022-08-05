@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import css from './FeedbackButton.module.css';
 
 const FeedbackButton = ({ reactions, onButtonClick }) => {
   return reactions.map(reaction => {
     return (
-      <button type="button" name={reaction} onClick={onButtonClick}>
+      <button
+        type="button"
+        className={css.reactionButton}
+        name={reaction}
+        onClick={onButtonClick}
+      >
         {reaction}
       </button>
     );
