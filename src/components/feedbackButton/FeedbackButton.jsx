@@ -7,9 +7,12 @@ const FeedbackButton = ({ reactions, onButtonClick }) => {
     return (
       <button
         type="button"
+        key={reaction}
         className={css.reactionButton}
         name={reaction}
-        onClick={onButtonClick}
+        onClick={() => {
+          onButtonClick(reaction);
+        }}
       >
         {reaction}
       </button>

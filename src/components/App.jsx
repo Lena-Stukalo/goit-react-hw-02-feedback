@@ -1,5 +1,6 @@
 import { Component } from 'react';
-
+import FeedbackButton from 'components/feedbackButton/FeedbackButton';
+import Statistics from 'components/statistics/Statistics';
 import Section from './section/Sectoin';
 
 const reactions = ['good', 'netrual', 'bad'];
@@ -10,11 +11,10 @@ export class App extends Component {
     netrual: 0,
     bad: 0,
   };
-  onButtonClick = event => {
-    this.setState(prevState => {
-      const { name } = event.target;
-      return { [name]: prevState[name] + 1 };
-    });
+  onButtonClick = name => {
+    this.setState(prevState => ({
+      [name]: prevState[name] + 1,
+    }));
   };
   countTotalFeedback = () => {
     const { good, netrual, bad } = this.state;
@@ -28,16 +28,21 @@ export class App extends Component {
     const { good, bad, netrual } = this.state;
     return (
       <div>
-        <Section
-          reactions={reactions}
-          onButtonClick={this.onButtonClick}
-          good={good}
-          netrual={netrual}
-          bad={bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-          title={'Plese leave youf feedback'}
-        ></Section>
+        <Section title="Plese leave youf feedback">
+          <FeedbackButton
+            reactions={reactions}
+            onButtonClick={this.onButtonClick}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            netrual={netrual}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
       </div>
     );
   }

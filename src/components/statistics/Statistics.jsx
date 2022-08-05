@@ -6,7 +6,6 @@ import css from './Statistics.module.css';
 const Statistics = ({ good, netrual, bad, total, positivePercentage }) => {
   return (
     <div>
-      <h2>Statistics</h2>
       {total ? (
         <ul className={css.list}>
           <li>Good: {good}</li>
